@@ -1,52 +1,89 @@
 import { StatusBar } from 'expo-status-bar';
-import { Button, StyleSheet, Text, View, TouchableOpacity, Image, SafeAreaView } from 'react-native';
+import { Button, StyleSheet, Text, View, SafeAreaView, TextInput } from 'react-native';
+import React, {Component} from 'react';
 
-export default function App() {
+export default class App extends Component {
 
-  console.log("App Runs");
 
   //View (like div) holds stuff
   //Safe area adds padding to top to ignore notch
   //On Press listens for an event
 
+  //Custom state for all meds to keep track of
   state = {
+    medToAdd: "",
     medList:["Med A", "Med B"]
   }
 
   onChangeInput = (event) => {
-    this.setState({
+    this.setState({medToAdd:event});
+  }
 
+  addMedication = () => {
+    this.setState(prevState => {
+      return {
+        medToAdd: "",
+        medList: [...prevState.medList, prevState.medToAdd]
+      }
     });
   }
 
-  return (
-    <SafeAreaView style={styles.container}>
-      <Text>Medication Tracker</Text>
-      {
-        this.state.medList.map(item => (
-          <Text style = {styles.med} key={item}>{item}</Text>
-        ))
-      }
-
-      <Button color="red"
-      title="Add New" onPress={() => alert("Button Press")}/>
-      <StatusBar style="auto" />
-    </SafeAreaView>
-  );
+  render() {
+    return (
+      <SafeAreaView style={styles.container}>
+        <Text style={styles.title}>Medication Tracker</Text>
+        {
+          //Uses map() to map list to several items
+          this.state.medList.map(item => (
+            <View style = {styles.medBox}>
+              <Text style = {styles.med} key={item}>{item}</Text>
+            </View>
+          ))
+        }
+        <TextInput
+        value = {this.state.medToAdd}
+        style = {styles.input}
+        onChangeText = {this.onChangeInput}/>
+        <Button color="red"
+        title="Add New" onPress={this.addMedication}/>
+        <StatusBar style="auto" />
+      </SafeAreaView>
+    );
+  }
+  
 }
 
 const styles = StyleSheet.create({
   container: {
+    width: '100%',
     flex: 1,
     backgroundColor: '#fff',
-    justifyContent: "center",
+    justifyContent: "flex-start",
     alignItems: "center"
+  },
+  title: {
+    fontSize: 35,
+    fontFamily: 'Helvetica',
+    color: '#fc0349',
+    marginTop: 30,
+    marginBottom: 20
+  },
+  medBox: {
+    width: '90%',
+    borderWidth: 2,
+    borderColor: '#e5709f',
+    marginBottom: 10,
+    backgroundColor: '#ffd7e7'
   },
   med: {
     fontSize: 20,
     padding: 10,
-    borderWidth: 2,
-    borderColor: '#cecece',
+  },
+  //temporary input
+  input: {
+    width: '100%',
+    backgroundColor: '#cecece',
+    fontSize: 20,
     marginBottom: 10
   }
 });
