@@ -9,25 +9,27 @@ export default function App() {
   //Safe area adds padding to top to ignore notch
   //On Press listens for an event
 
-  const pressName = () =>
-    console.log("Hello World");
+  state = {
+    medList:["Med A", "Med B"]
+  }
+
+  onChangeInput = (event) => {
+    this.setState({
+
+    });
+  }
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text onPress={pressName}>Hello, Kiron</Text>
-      <Text>Open up App.js to start working on your app!</Text>
-      <TouchableOpacity onPress={() => console.log("Short press")}
-      onLongPress={() => console.log("Long Press")}>
-        <Image 
-        blurRadius={10}
-        source={{
-          width: 200,
-          height: 300,
-          uri: "https://picsum.photos/200/300"}}
-          />
-      </TouchableOpacity>
+      <Text>Medication Tracker</Text>
+      {
+        this.state.medList.map(item => (
+          <Text style = {styles.med} key={item}>{item}</Text>
+        ))
+      }
+
       <Button color="red"
-      title="Click Me" onPress={() => alert("Button Press")}/>
+      title="Add New" onPress={() => alert("Button Press")}/>
       <StatusBar style="auto" />
     </SafeAreaView>
   );
@@ -40,4 +42,11 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center"
   },
+  med: {
+    fontSize: 20,
+    padding: 10,
+    borderWidth: 2,
+    borderColor: '#cecece',
+    marginBottom: 10
+  }
 });
