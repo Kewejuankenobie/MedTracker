@@ -1,5 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
-import { Button, StyleSheet, Text, View, SafeAreaView, TextInput } from 'react-native';
+import { Button, StyleSheet, Text, View, SafeAreaView,
+   TextInput, ScrollView } from 'react-native';
 import React, {Component} from 'react';
 
 export default class App extends Component {
@@ -12,7 +13,7 @@ export default class App extends Component {
   //Custom state for all meds to keep track of
   state = {
     medToAdd: "",
-    medList:["Med A", "Med B"]
+    medList: ["Med A", "Med B"]
   }
 
   onChangeInput = (event) => {
@@ -31,6 +32,7 @@ export default class App extends Component {
   render() {
     return (
       <SafeAreaView style={styles.container}>
+        <ScrollView>
         <Text style={styles.title}>Medication Tracker</Text>
         {
           //Uses map() to map list to several items
@@ -47,6 +49,7 @@ export default class App extends Component {
         <Button color="red"
         title="Add New" onPress={this.addMedication}/>
         <StatusBar style="auto" />
+        </ScrollView>
       </SafeAreaView>
     );
   }
