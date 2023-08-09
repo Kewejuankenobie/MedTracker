@@ -2,6 +2,8 @@ import { StatusBar } from 'expo-status-bar';
 import { Button, StyleSheet, Text, View, SafeAreaView,
    TextInput, ScrollView } from 'react-native';
 import React, {Component} from 'react';
+import MedList from './MedList.js';
+import AddMedPage from './AddMedPage.js';
 
 export default class App extends Component {
 
@@ -13,7 +15,7 @@ export default class App extends Component {
   //Custom state for all meds to keep track of
   state = {
     medToAdd: "",
-    medList: ["Med A", "Med B"]
+    medList: []
   }
 
   onChangeInput = (event) => {
@@ -39,6 +41,7 @@ export default class App extends Component {
           this.state.medList.map(item => (
             <View style = {styles.medBox}>
               <Text style = {styles.med} key={item}>{item}</Text>
+              <Button title="Remove"/>
             </View>
           ))
         }
@@ -48,6 +51,7 @@ export default class App extends Component {
         onChangeText = {this.onChangeInput}/>
         <Button color="red"
         title="Add New" onPress={this.addMedication}/>
+        <AddMedPage/>
         <StatusBar style="auto" />
         </ScrollView>
       </SafeAreaView>
@@ -72,7 +76,7 @@ const styles = StyleSheet.create({
     marginBottom: 20
   },
   medBox: {
-    width: '90%',
+    flexDirection: 'row',
     borderWidth: 2,
     borderColor: '#e5709f',
     marginBottom: 10,
