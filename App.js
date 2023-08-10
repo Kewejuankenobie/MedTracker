@@ -3,7 +3,6 @@ import { Button, StyleSheet, Text, View, SafeAreaView,
    TextInput, ScrollView } from 'react-native';
 import React, {Component} from 'react';
 import MedList from './MedList.js';
-import AddMedPage from './AddMedPage.js';
 
 export default class App extends Component {
 
@@ -13,45 +12,13 @@ export default class App extends Component {
   //On Press listens for an event
 
   //Custom state for all meds to keep track of
-  state = {
-    medToAdd: "",
-    medList: []
-  }
-
-  onChangeInput = (event) => {
-    this.setState({medToAdd:event});
-  }
-
-  addMedication = () => {
-    this.setState(prevState => {
-      return {
-        medToAdd: "",
-        medList: [...prevState.medList, prevState.medToAdd]
-      }
-    });
-  }
 
   render() {
     return (
       <SafeAreaView style={styles.container}>
         <ScrollView>
         <Text style={styles.title}>Medication Tracker</Text>
-        {
-          //Uses map() to map list to several items
-          this.state.medList.map(item => (
-            <View style = {styles.medBox}>
-              <Text style = {styles.med} key={item}>{item}</Text>
-              <Button title="Remove"/>
-            </View>
-          ))
-        }
-        <TextInput
-        value = {this.state.medToAdd}
-        style = {styles.input}
-        onChangeText = {this.onChangeInput}/>
-        <Button color="red"
-        title="Add New" onPress={this.addMedication}/>
-        <AddMedPage/>
+        <MedList/>
         <StatusBar style="auto" />
         </ScrollView>
       </SafeAreaView>

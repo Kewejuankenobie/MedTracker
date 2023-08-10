@@ -51,6 +51,12 @@ export default class AddMedPage extends Component {
                     dosage: ""
                 };
             });
+            this.props.med({
+                name: nameToExp,
+                persc: amToExp,
+                current: curToExp,
+                dosage: dosToExp
+            });
         }
     }
 
