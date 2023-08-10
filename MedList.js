@@ -7,11 +7,13 @@ export default class MedList extends Component {
 
     state = {
         medToAdd: null,
-        medList: [{name: 'name', persc: 0, current: 0, dosage: "e", key: '0'}]
+        medList: [{name: 'Sample', persc: 30, current: 20, dosage: "e", key: '0'}]
     };
 
     addMed = (data) => {
+        
         this.setState({medToAdd: data});
+        this.state.medToAdd
         this.setState(prevState => {
             return {
                 medToAdd: null,

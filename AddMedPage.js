@@ -12,7 +12,7 @@ export default class AddMedPage extends Component {
         name: "",
         amount: "",
         currAmount: "",
-        dosage: ""
+        dosage: "",
     };
 
     changeName = (event) => {
@@ -37,26 +37,36 @@ export default class AddMedPage extends Component {
         and amount currently owned is a number */
         if ((isNaN(this.state.amount)) || 
         (isNaN(this.state.currAmount))) {
-            alert("Amount and / or Current Amount Must Be a Positive Integer");
+            alert("Amount and/or Current Amount Must Be a Positive Integer");
+        
+        } else if (this.state.name.length == 0 ||
+        this.state.dosage.length == 0) {
+            alert("Name and/or Dossage Can't be Empty");
+
         } else {
             let nameToExp = this.state.name;
-            let amToExp = +this.state.amount; //int
-            let curToExp = +this.state.currAmount; //int
+            let amToExp = +this.state.amount; //convert to int
+            let curToExp = +this.state.currAmount; //convert to int
             let dosToExp = this.state.dosage;
+            //Super simple function to get a key
+            let keyToExp = (amToExp + curToExp) / (2 * amToExp + 1);
+            console.log(keyToExp);
             this.setState(prevState => {
                 return {
                     name: "",
                     amount: "",
                     currAmount: "",
-                    dosage: ""
+                    dosage: "",
                 };
             });
             this.props.med({
                 name: nameToExp,
                 persc: amToExp,
                 current: curToExp,
-                dosage: dosToExp
+                dosage: dosToExp,
+                key: keyToExp
             });
+
         }
     }
 
