@@ -49,8 +49,7 @@ export default class AddMedPage extends Component {
             let curToExp = +this.state.currAmount; //convert to int
             let dosToExp = this.state.dosage;
             //Super simple function to get a key
-            let keyToExp = (amToExp + curToExp) / (2 * amToExp + 1);
-            console.log(keyToExp);
+            let keyToExp = (amToExp + curToExp) / (2 * amToExp + 1) + nameToExp.length;
             this.setState(prevState => {
                 return {
                     name: "",
