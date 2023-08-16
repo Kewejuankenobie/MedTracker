@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import {View, Text, StyleSheet, Button} from 'react-native';
+import AsyncStorage from 
+'@react-native-async-storage/async-storage';
 
 import AddMedPage from './AddMedPage.js'
 
@@ -7,13 +9,37 @@ export default class MedList extends Component {
 
     state = {
         medToAdd: null,
-        medList: [{name: 'Sample Med', persc: 30, current: 20, dosage: "One pill twice a day", key: '0'}]
+        medList: []
+        //{name, persc, current, dosage, key}
     };
+
+    constructor() {
+        //Get data from async Storage and add to medList state
+    }
+
+    saveData(med) {
+        //Save all med data
+        let id = med.name;
+        let medToSave = JSON.stringify(med);
+        AsyncStorage.setItem(id, medToSave);
+        //Add med to records
+    }
+
+    async getData(med) {
+        //Get med data (maybe seperate function for listing all meds)
+        try {
+            let data = await AsyncStorage.getItem(med.name);
+            let parsedData = JSON.parse(data);
+            alert(parsedData.name);
+        } catch(error) {
+            alert("Data not recived")
+        }
+    }
 
     addMed = (data) => {
         //Adds a medication to the medList
         this.setState({medToAdd: data});
-        this.state.medToAdd
+        this.saveData(data);
         this.setState(prevState => {
             return {
                 medToAdd: null,
@@ -28,6 +54,7 @@ export default class MedList extends Component {
         for (let i = 0; i < this.state.medList.length; i++) {
             if (this.state.medList[i].key == k) {
                 let tmpList = this.state.medList;
+                AsyncStorage.removeItem(tmpList[i].name);
                 tmpList.splice(i, 1);
                 this.setState({medList: tmpList});
                 break;
@@ -45,6 +72,7 @@ export default class MedList extends Component {
                     break;
                 } else {
                     tmpList[i].current--;
+                    this.saveData(tmpList[i]);
                     this.setState({medList: tmpList});
                     break;
                 }
@@ -58,6 +86,7 @@ export default class MedList extends Component {
             if (this.state.medList[i].key == k) {
                 let tmpList = this.state.medList;
                 tmpList[i].current += tmpList[i].persc;
+                this.saveData(tmpList[i]);
                 this.setState({medList: tmpList});
                 break;
             }
