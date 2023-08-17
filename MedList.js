@@ -13,32 +13,41 @@ export default class MedList extends Component {
         //{name, persc, current, dosage, key}
     };
 
-    constructor() {
+    constructor(prop) {
         //Get data from async Storage and add to medList state
+        super(prop);
+        this.getData();
     }
 
-    saveData(med) {
+    async saveData(med) {
         //Save all med data
         let id = med.name;
         let medToSave = JSON.stringify(med);
-        AsyncStorage.setItem(id, medToSave);
-        //Add med to records
+        await AsyncStorage.setItem(id, medToSave);
     }
 
-    async getData(med) {
+    async getData() {
         //Get med data (maybe seperate function for listing all meds)
         try {
-            let data = await AsyncStorage.getItem(med.name);
-            let parsedData = JSON.parse(data);
-            alert(parsedData.name);
+            const keys = await AsyncStorage.getAllKeys();
+            const allMeds = await AsyncStorage.multiGet(keys);
+            if (allMeds !== null) {
+                let tmpList = [];
+                for (let i = 0; i < allMeds.length; i++) {
+                    const medObj = JSON.parse(allMeds[i][1]);
+                    tmpList.push(medObj);
+                }
+                this.setState({medList: tmpList});
+            }
         } catch(error) {
-            alert("Data not recived")
+            console.log(error);
         }
     }
 
     addMed = (data) => {
         //Adds a medication to the medList
         this.setState({medToAdd: data});
+        console.log(data.name);
         this.saveData(data);
         this.setState(prevState => {
             return {
