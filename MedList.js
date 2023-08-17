@@ -112,8 +112,11 @@ export default class MedList extends Component {
                             <Text>{item.name}</Text>
                             <Text>Prescribed Amount: {item.persc}</Text>
                             <Text>Remaining Amount: {item.current}</Text>
-                            <Text>Dossage: {item.dosage}</Text>
-                            <Button title = "Take pill"
+                            <Text>Dosage: {item.dosage}</Text>
+                            {item.current < 0.34 * item.persc ?
+                            <Text>Warning, Running Low</Text>
+                            : <Text></Text>}
+                            <Button title = "Take Med"
                             onPress = {this.takePill.bind(this, item.key)}/>
                             <Button title = "Add Perscription"
                             onPress = {this.addPerscription.bind(this, item.key)}/>

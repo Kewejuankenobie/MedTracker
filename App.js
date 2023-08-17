@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
   container: {
     width: '100%',
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#fff2f4',
     justifyContent: "flex-start",
     alignItems: "center"
   },
@@ -41,23 +41,5 @@ const styles = StyleSheet.create({
     color: '#fc0349',
     marginTop: 30,
     marginBottom: 20
-  },
-  medBox: {
-    flexDirection: 'row',
-    borderWidth: 2,
-    borderColor: '#e5709f',
-    marginBottom: 10,
-    backgroundColor: '#ffd7e7'
-  },
-  med: {
-    fontSize: 20,
-    padding: 10,
-  },
-  //temporary input
-  input: {
-    width: '100%',
-    backgroundColor: '#cecece',
-    fontSize: 20,
-    marginBottom: 10
   }
 });

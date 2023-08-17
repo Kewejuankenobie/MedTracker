@@ -72,26 +72,26 @@ export default class AddMedPage extends Component {
     render() {
         return (
             <View>
-            <Text>Enter Fields To Add Med</Text>
-            <Text>Name</Text>
-            <TextInput 
-            value = {this.state.name}
-            onChangeText = {this.changeName}
-            />
-            <Text>Amount per Perscription</Text>
-            <TextInput
-            value = {this.state.amount}
-            onChangeText = {this.changeAmount}/>
-            <Text>Current Amount</Text>
-            <TextInput
-            value = {this.state.currAmount}
-            onChangeText = {this.changeCurrent}/>
-            <Text>Dosage</Text>
-            <TextInput
-            value = {this.state.dosage}
-            onChangeText = {this.changeDosage}/>
-            <Button title = "Add Med" onPress = {this.createMed}/>
-            <StatusBar style="auto"/>
+                <Text>Enter Fields To Add Med</Text>
+                <Text>Name</Text>
+                <TextInput 
+                value = {this.state.name}
+                onChangeText = {this.changeName}
+                />
+                <Text>Amount per Perscription</Text>
+                <TextInput
+                value = {this.state.amount}
+                onChangeText = {this.changeAmount}/>
+                <Text>Current Amount</Text>
+                <TextInput
+                value = {this.state.currAmount}
+                onChangeText = {this.changeCurrent}/>
+                <Text>Dosage</Text>
+                <TextInput
+                value = {this.state.dosage}
+                onChangeText = {this.changeDosage}/>
+                <Button title = "Add Med" onPress = {this.createMed}/>
+                <StatusBar style="auto"/>
             </View>
         );
     }
