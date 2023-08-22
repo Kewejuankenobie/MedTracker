@@ -119,7 +119,7 @@ const styles = StyleSheet.create ({
         alignSelf: "center"
     },
     textBox: {
-        backgroundColor: "#e2e2e2",
+        backgroundColor: "#eae4e7",
         marginBottom: 15,
         width: "90%",
         alignSelf: "center"
