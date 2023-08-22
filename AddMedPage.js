@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-import {Text, View, TextInput, Button} from 'react-native';
+import {Text, View, TextInput, Button, StyleSheet} from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 
 import MedList from './MedList';
@@ -71,28 +71,57 @@ export default class AddMedPage extends Component {
 
     render() {
         return (
-            <View>
-                <Text>Enter Fields To Add Med</Text>
-                <Text>Name</Text>
+            <View style = {styles.box}>
+                <Text style = {styles.title}>Enter Fields To Add Med</Text>
+                <Text style = {styles.prompt}>Name</Text>
                 <TextInput 
                 value = {this.state.name}
                 onChangeText = {this.changeName}
+                style = {styles.textBox}
                 />
-                <Text>Amount per Perscription</Text>
+                <Text style = {styles.prompt}>Amount per Perscription (Integer)</Text>
                 <TextInput
                 value = {this.state.amount}
-                onChangeText = {this.changeAmount}/>
-                <Text>Current Amount</Text>
+                onChangeText = {this.changeAmount}
+                style = {styles.textBox}/>
+                <Text style = {styles.prompt}>Current Amount (Integer)</Text>
                 <TextInput
                 value = {this.state.currAmount}
-                onChangeText = {this.changeCurrent}/>
-                <Text>Dosage</Text>
+                onChangeText = {this.changeCurrent}
+                style = {styles.textBox}/>
+                <Text style = {styles.prompt}>Dosage Notes</Text>
                 <TextInput
                 value = {this.state.dosage}
-                onChangeText = {this.changeDosage}/>
+                onChangeText = {this.changeDosage}
+                style = {styles.textBox}/>
                 <Button title = "Add Med" onPress = {this.createMed}/>
                 <StatusBar style="auto"/>
             </View>
         );
     }
 }
+
+const styles = StyleSheet.create ({
+    box: {
+        borderWidth: 3,
+        marginTop: 20,
+        marginBottom: 15,
+        backgroundColor: "#fff2fa",
+        borderColor: "#f9295b"
+    },
+    title: {
+        fontSize: 25,
+        fontWeight: "400",
+        alignSelf: "center"
+    },
+    prompt: {
+        fontSize: 20,
+        alignSelf: "center"
+    },
+    textBox: {
+        backgroundColor: "#e2e2e2",
+        marginBottom: 15,
+        width: "90%",
+        alignSelf: "center"
+    }
+});

@@ -40,6 +40,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Helvetica',
     color: '#fc0349',
     marginTop: 30,
-    marginBottom: 20
+    marginBottom: 20,
+    fontWeight: "700"
   }
 });

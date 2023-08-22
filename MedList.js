@@ -109,18 +109,22 @@ export default class MedList extends Component {
                 {
                     this.state.medList.map(item => (
                         <View style = {styles.medBox} key = {item.key}>
-                            <Text>{item.name}</Text>
-                            <Text>Prescribed Amount: {item.persc}</Text>
-                            <Text>Remaining Amount: {item.current}</Text>
-                            <Text>Dosage: {item.dosage}</Text>
+                            <Text style = {styles.medName}>{item.name}</Text>
+                            <Text style = {styles.medInfo}>Prescribed Amount: {item.persc}</Text>
+                            <Text style = {styles.medInfo}>Remaining Amount: {item.current}</Text>
+                            <Text style = {styles.medInfo}>Dosage: {item.dosage}</Text>
                             {item.current < 0.34 * item.persc ?
-                            <Text>Warning, Running Low</Text>
-                            : <Text></Text>}
-                            <Button title = "Take Med"
-                            onPress = {this.takePill.bind(this, item.key)}/>
-                            <Button title = "Add Perscription"
-                            onPress = {this.addPerscription.bind(this, item.key)}/>
+                            <Text style = {styles.warningText}>Warning, Running Low</Text>
+                            : <Text style = {styles.warningText}></Text>}
+                            <View style = {styles.buttonBox}>
+                                <Button title = "Take Med"
+                                onPress = {this.takePill.bind(this, item.key)}/>
+                                <Button title = "Add Perscription"
+                                onPress = {this.addPerscription.bind(this, item.key)}/>
+                            </View>
+                            <Text />
                             <Button title = "Remove Med"
+                            color = "red"
                             onPress = {this.removeMed.bind(this, item.key)}/>
                         </View>
                     ))
@@ -138,5 +142,25 @@ const styles = StyleSheet.create ({
         borderColor: '#e5709f',
         marginBottom: 10,
         backgroundColor: '#ffd7e7'
-      }
+    },
+    medName: {
+        fontSize: 20,
+        fontWeight: "600",
+        alignSelf: "center",
+        marginBottom: 20
+    },
+    medInfo: {
+        fontSize: 15,
+        alignSelf: "center"
+    },
+    buttonBox: {
+        flexDirection: "row",
+        alignSelf: "center"
+    },
+    warningText: {
+        fontSize: 15,
+        fontWeight: "500",
+        alignSelf: "center",
+        color: "#8a0005"
+    }
 });
