@@ -72,14 +72,14 @@ export default class AddMedPage extends Component {
     render() {
         return (
             <View style = {styles.box}>
-                <Text style = {styles.title}>Enter Fields To Add Med</Text>
+                <Text style = {styles.title}>Enter Info For A New Med</Text>
                 <Text style = {styles.prompt}>Name</Text>
                 <TextInput 
                 value = {this.state.name}
                 onChangeText = {this.changeName}
                 style = {styles.textBox}
                 />
-                <Text style = {styles.prompt}>Amount per Perscription (Integer)</Text>
+                <Text style = {styles.prompt}>Amount per Prescription (Integer)</Text>
                 <TextInput
                 value = {this.state.amount}
                 onChangeText = {this.changeAmount}
@@ -111,7 +111,7 @@ const styles = StyleSheet.create ({
     },
     title: {
         fontSize: 25,
-        fontWeight: "400",
+        fontWeight: "500",
         alignSelf: "center"
     },
     prompt: {

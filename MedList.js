@@ -119,7 +119,7 @@ export default class MedList extends Component {
                             <View style = {styles.buttonBox}>
                                 <Button title = "Take Med"
                                 onPress = {this.takePill.bind(this, item.key)}/>
-                                <Button title = "Add Perscription"
+                                <Button title = "Add Prescription"
                                 onPress = {this.addPerscription.bind(this, item.key)}/>
                             </View>
                             <Text />
