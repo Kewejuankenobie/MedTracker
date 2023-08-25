@@ -3,7 +3,7 @@
     "name": "Med Tracker",
     "slug": "med-tracker",
     "description": "This is a small app aimed at helping track medication usage",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./assets/icon-med.png",
     "userInterfaceStyle": "light",
